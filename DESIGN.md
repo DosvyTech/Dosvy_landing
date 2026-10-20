@@ -14,11 +14,19 @@ Temas mediante `html[data-theme]`; `--bg`, `--surface`, `--ink`, `--muted`, `--l
 
 Manrope para titulares, DM Sans para texto y controles. «dos» usa Poppins SemiBold 600. `--logo-ink` es negro en claro y blanco en oscuro; «vy.» usa el mismo PNG sin filtros en ambos temas. El elemento decorativo reutiliza ese gráfico y mantiene sus órbitas, posiciones por escena y animación de flotación. No existe selector de isotipos.
 
+## Escala y controles compartidos
+
+El change `refine-visual-system` mantiene el `<style>` de `index.html` como único propietario de los valores. `--space-1` a `--space-5` definen 8, 12, 16, 24 y 32 px; `--type-title` unifica los títulos secundarios y `--measure` limita la lectura a 44 caracteres aproximados. El texto principal usa 16 px en escritorio y 14 px en móvil, con interlineado 1.65. Las adaptaciones por altura conservan su escala compacta.
+
+Los botones y controles reutilizan `--control-size` (44 px), `--action-size` (50 px), `--control-radius` (10 px) y `--control-gap` (8 px). Los nodos circulares del diagrama y el contacto flotante conservan su geometría propia. `--line` sigue siendo decorativo; `--control-border` identifica controles con contraste suficiente. Los CTA y las selecciones de proyectos/nodos usan `--primary-bg`, `--primary-hover` y `--primary-ink`: Deep Plum con blanco en claro, acento lavanda con tinta oscura en oscuro. No duplicar estos valores en componentes independientes.
+
+En pantallas bajas, las escenas permiten desplazar su contenido sin desplazar el encabezado ni el pie. El diagrama mantiene espacio para sus nodos y limita el ancho de su descripción central. La adaptación móvil de poca altura reduce el gráfico decorativo de Inicio a 90 px y lo sitúa a la derecha para despejar los CTA; conserva el recurso y su animación original.
+
 ## Interacción y movimiento
 
 Mantener transiciones entre escenas, servicios con pantalla adaptable, tres vistas de proyectos, diagrama interactivo de Estudio, detalles laterales y formulario de tres pasos. Los paneles conservan foco y cierre con Escape. `prefers-reduced-motion` reduce movimiento y transiciones. No introducir nuevas animaciones.
 
-La preferencia de tema se aplica antes del CSS. El almacenamiento solo corresponde al tema y el idioma; no guardar datos del formulario. El gráfico principal es `assets/logos/dosvy-vy.png`; sus derivados cuadrados de 32, 48 y 180 px se usan exclusivamente como iconos del navegador, con fondo blanco, esquinas redondeadas y transparencia exterior. Las fuentes se solicitan a Google Fonts.
+La preferencia de tema se aplica antes del CSS. El almacenamiento solo corresponde al tema y el idioma; no guardar datos del formulario. El gráfico principal se sirve como `assets/logos/dosvy-vy.webp` con `assets/logos/dosvy-vy.png` como fallback; sus derivados cuadrados de 32, 48 y 180 px se usan exclusivamente como iconos del navegador, con fondo blanco, esquinas redondeadas y transparencia exterior. Las fuentes se solicitan a Google Fonts.
 
 ## Contacto flotante
 

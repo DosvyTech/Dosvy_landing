@@ -2,7 +2,7 @@
 
 Réplica de `dosvy.html` con la composición, cinco escenas, textos, idiomas e interacciones originales. No requiere compilación ni paquetes.
 
-Abrir `index.html` directamente en un navegador. Para desplegar, copiar esta carpeta a cualquier alojamiento de archivos estáticos conservando `assets/logos/dosvy-vy.png` y su ruta relativa.
+Abrir `index.html` directamente en un navegador. Para desplegar, copiar esta carpeta a cualquier alojamiento de archivos estáticos conservando `assets/logos/dosvy-vy.webp`, `assets/logos/dosvy-vy.png` (fallback) y sus rutas relativas.
 
 El documento contiene los estilos y scripts. Google Fonts proporciona Manrope, DM Sans y Poppins SemiBold 600; se requiere conexión para cargar esas fuentes. El gráfico `vy.` se extrajo del PNG original sin redibujarlo ni aplicar filtros. «dos» es texto y cambia entre negro y blanco según el tema.
 

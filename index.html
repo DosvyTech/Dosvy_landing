@@ -49,8 +49,11 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@600&display=swap"
+    />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@600&display=swap");
       :root {
         color-scheme: light;
         --bg: #f7f4f8;
@@ -70,6 +73,22 @@
         --glow: rgba(167, 122, 214, 0.2);
         --display: "Manrope", sans-serif;
         --text: "DM Sans", sans-serif;
+        --space-1: 8px;
+        --space-2: 12px;
+        --space-3: 16px;
+        --space-4: 24px;
+        --space-5: 32px;
+        --type-title: clamp(40px, 4.8vw, 76px);
+        --type-body: 16px;
+        --measure: 44ch;
+        --control-size: 44px;
+        --action-size: 50px;
+        --control-radius: 10px;
+        --control-gap: 8px;
+        --control-border: #887392;
+        --primary-bg: var(--deep-plum);
+        --primary-hover: #713084;
+        --primary-ink: #ffffff;
         --ease: cubic-bezier(0.22, 1, 0.36, 1);
         --scene-time: 740ms;
       }
@@ -86,6 +105,10 @@
         --purple: #b775d1;
         --soft: #291d32;
         --glow: rgba(130, 49, 158, 0.23);
+        --control-border: #8e789a;
+        --primary-bg: var(--accent);
+        --primary-hover: #d6a5eb;
+        --primary-ink: #26112d;
       }
       * {
         box-sizing: border-box;
@@ -114,6 +137,9 @@
       button:disabled {
         cursor: not-allowed;
         opacity: 0.43;
+      }
+      button:disabled:hover {
+        transform: none;
       }
       a {
         color: inherit;
@@ -195,6 +221,10 @@
         height: 0.75em;
         object-fit: contain;
       }
+      .wordbrand picture,
+      .persistent-mark picture {
+        display: contents;
+      }
       .wordbrand:hover {
         opacity: 0.85;
       }
@@ -216,10 +246,10 @@
       }
       .control {
         background: transparent;
-        border: 1px solid var(--line);
+        border: 1px solid var(--control-border);
         color: var(--ink);
-        border-radius: 9px;
-        min-height: 38px;
+        border-radius: var(--control-radius);
+        min-height: var(--control-size);
         padding: 0 12px;
         display: flex;
         align-items: center;
@@ -231,12 +261,12 @@
           background 0.2s,
           border 0.2s;
       }
-      .control:hover {
+      .control:hover:not(:disabled) {
         background: var(--soft);
         border-color: var(--purple);
       }
       .control.icononly {
-        width: 40px;
+        width: var(--control-size);
         padding: 0;
       }
       .control svg {
@@ -255,11 +285,11 @@
         right: 0;
         top: 0;
         bottom: 0;
-        overflow: hidden;
+        overflow: clip;
       }
       .scene {
         position: absolute;
-        inset: 100px 56px 86px 45px;
+        inset: 100px 56px 86px;
         opacity: 0;
         visibility: hidden;
         transform: translateY(38px) scale(0.982);
@@ -306,6 +336,10 @@
         align-self: center;
         min-width: 0;
       }
+      .service-left,
+      .project-copy {
+        min-width: 0;
+      }
       .tagline {
         display: flex;
         align-items: center;
@@ -332,17 +366,17 @@
       h2 {
         font-family: var(--display);
         font-weight: 800;
-        letter-spacing: -0.06em;
-        line-height: 1.05;
+        letter-spacing: -0.055em;
+        line-height: 1.08;
       }
       h1 {
-        font-size: clamp(48px, 6.4vw, 104px);
-        margin: 24px 0 22px;
+        font-size: clamp(48px, 6vw, 96px);
+        margin: var(--space-4) 0;
         max-width: 780px;
       }
       h2 {
-        font-size: clamp(42px, 5.1vw, 78px);
-        margin: 19px 0 19px;
+        font-size: var(--type-title);
+        margin: var(--space-3) 0 var(--space-4);
       }
       .serif-accent {
         color: var(--purple);
@@ -350,28 +384,28 @@
         letter-spacing: -0.075em;
       }
       .lead {
-        max-width: 420px;
+        max-width: var(--measure);
         color: var(--muted);
-        font-size: 15px;
-        line-height: 1.75;
+        font-size: var(--type-body);
+        line-height: 1.65;
       }
       .actions {
         display: flex;
-        gap: 12px;
+        gap: var(--space-2);
         align-items: center;
         flex-wrap: wrap;
-        margin-top: 32px;
+        margin-top: var(--space-5);
       }
       .btn-primary {
-        border: 1px solid #531a62;
-        background: #531a62;
-        color: white;
-        border-radius: 10px;
+        border: 1px solid var(--primary-bg);
+        background: var(--primary-bg);
+        color: var(--primary-ink);
+        border-radius: var(--control-radius);
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 26px;
-        min-height: 50px;
+        gap: var(--space-3);
+        min-height: var(--action-size);
         padding: 0 20px;
         font-weight: 700;
         font-size: 12px;
@@ -379,8 +413,8 @@
           transform 0.2s var(--ease),
           background 0.2s;
       }
-      .btn-primary:hover {
-        background: #713084;
+      .btn-primary:hover:not(:disabled) {
+        background: var(--primary-hover);
         transform: translateY(-2px);
       }
       .btn-quiet {
@@ -389,12 +423,14 @@
         color: var(--ink);
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: var(--control-gap);
+        min-height: var(--action-size);
+        border-radius: var(--control-radius);
         font-weight: 700;
         font-size: 12px;
         padding: 15px 10px;
       }
-      .btn-quiet:hover {
+      .btn-quiet:hover:not(:disabled) {
         color: var(--purple);
       }
       .arrow {
@@ -701,7 +737,7 @@
         z-index: 12;
       }
       .service-left h2 {
-        margin-bottom: 14px;
+        margin-bottom: var(--space-4);
       }
       .service-list {
         margin-top: 22px;
@@ -710,6 +746,7 @@
       }
       .service-choice {
         width: 100%;
+        min-height: var(--control-size);
         border: 0;
         border-bottom: 1px solid var(--line);
         background: transparent;
@@ -885,30 +922,30 @@
         z-index: 10;
       }
       .project-copy h2 {
-        font-size: clamp(42px, 4.5vw, 70px);
+        font-size: var(--type-title);
       }
       .project-copy .lead {
-        max-width: 300px;
+        max-width: 34ch;
       }
       .project-tabs {
         display: flex;
-        gap: 7px;
+        gap: var(--control-gap);
         margin-top: 32px;
       }
       .project-tab {
         background: transparent;
-        border: 1px solid var(--line);
-        width: 38px;
-        height: 38px;
-        border-radius: 8px;
+        border: 1px solid var(--control-border);
+        width: var(--control-size);
+        height: var(--control-size);
+        border-radius: var(--control-radius);
         color: var(--muted);
         font-size: 11px;
         font-weight: 800;
       }
       .project-tab.active {
-        background: #531a62;
-        border-color: #531a62;
-        color: white;
+        background: var(--primary-bg);
+        border-color: var(--primary-bg);
+        color: var(--primary-ink);
       }
       .project-meta {
         margin-top: 23px;
@@ -1073,24 +1110,25 @@
         max-width: 540px;
       }
       .studio-note {
-        font-size: 12px;
-        line-height: 1.8;
+        font-size: 14px;
+        line-height: 1.65;
         color: var(--muted);
-        max-width: 410px;
-        margin-top: 15px;
+        max-width: var(--measure);
+        margin-top: var(--space-3);
       }
       .studio-tabs {
-        margin-top: 30px;
+        margin-top: var(--space-5);
         display: flex;
-        gap: 10px;
+        gap: var(--control-gap);
         flex-wrap: wrap;
       }
       .studio-tab {
+        min-height: var(--control-size);
         padding: 12px 14px;
         color: var(--muted);
-        border: 1px solid var(--line);
+        border: 1px solid var(--control-border);
         background: transparent;
-        border-radius: 7px;
+        border-radius: var(--control-radius);
         font-size: 11px;
         font-weight: 700;
       }
@@ -1100,11 +1138,11 @@
         border-color: var(--ink);
       }
       .studio-explain {
-        max-width: 420px;
-        margin-top: 20px;
+        max-width: var(--measure);
+        margin-top: var(--space-4);
         color: var(--muted);
-        line-height: 1.7;
-        font-size: 13px;
+        line-height: 1.65;
+        font-size: 14px;
         min-height: 54px;
       }
       .studio-stage {
@@ -1145,7 +1183,7 @@
         width: 86px;
         height: 86px;
         background: var(--surface);
-        border: 1px solid var(--line);
+        border: 1px solid var(--control-border);
         border-radius: 50%;
         color: var(--ink);
         font-size: 9px;
@@ -1156,10 +1194,10 @@
           background 0.3s;
       }
       .studio-node.active {
-        background: #531a62;
-        color: #fff;
+        background: var(--primary-bg);
+        color: var(--primary-ink);
         transform: scale(1.17);
-        border-color: #531a62;
+        border-color: var(--primary-bg);
       }
       .studio-node[data-index="0"] {
         left: 50%;
@@ -1210,7 +1248,7 @@
         grid-template-columns: 45% 55%;
       }
       .contact-copy h2 {
-        font-size: clamp(49px, 5.4vw, 86px);
+        font-size: var(--type-title);
       }
       .contact-pane {
         max-width: 560px;
@@ -1285,8 +1323,8 @@
         gap: 9px;
       }
       .form-option {
-        border: 1px solid var(--line);
-        border-radius: 8px;
+        border: 1px solid var(--control-border);
+        border-radius: var(--control-radius);
         text-align: left;
         padding: 14px 12px;
         background: transparent;
@@ -1321,14 +1359,13 @@
       }
       .field input,
       .field textarea {
-        border: 1px solid var(--line);
+        border: 1px solid var(--control-border);
         background: var(--bg);
-        border-radius: 8px;
+        border-radius: var(--control-radius);
         color: var(--ink);
         padding: 12px;
         width: 100%;
         font-size: 13px;
-        outline: none;
       }
       .field input:focus,
       .field textarea:focus {
@@ -1352,7 +1389,7 @@
         margin-top: 13px;
       }
       .form-controls .btn-primary {
-        min-height: 40px;
+        min-height: var(--control-size);
         font-size: 11px;
       }
       .form-controls .btn-quiet {
@@ -1377,7 +1414,7 @@
       .success-title {
         font: 800 25px var(--display);
         letter-spacing: -0.04em;
-        margin-bottom: 11px;
+        margin: 0 0 11px;
       }
       .fineprint {
         color: var(--muted);
@@ -1425,11 +1462,11 @@
       .detail-close {
         align-self: flex-end;
         background: transparent;
-        border: 1px solid var(--line);
+        border: 1px solid var(--control-border);
         color: var(--ink);
-        border-radius: 8px;
-        width: 36px;
-        height: 36px;
+        border-radius: var(--control-radius);
+        width: var(--control-size);
+        height: var(--control-size);
         font-size: 24px;
       }
       .detail-overline {
@@ -1506,8 +1543,8 @@
           right: 30px;
         }
         .scene {
-          left: 26px;
-          right: 32px;
+          left: 30px;
+          right: 30px;
         }
         .bottomline {
           left: 31px;
@@ -1557,13 +1594,13 @@
           gap: 5px;
         }
         .control {
-          height: 36px;
-          min-height: 36px;
+          height: var(--control-size);
+          min-height: var(--control-size);
           padding: 0 9px;
-          font-size: 10px;
+          font-size: 11px;
         }
         .control.icononly {
-          width: 35px;
+          width: var(--control-size);
         }
         .viewport {
           left: 0;
@@ -1602,20 +1639,20 @@
           padding-bottom: 0;
         }
         .hero-copy h1 {
-          font-size: clamp(44px, 11vw, 68px);
-          margin: 13px 0 12px;
-          line-height: 1.02;
+          font-size: clamp(40px, 10.5vw, 64px);
+          margin: var(--space-3) 0;
+          line-height: 1.08;
         }
         .lead {
-          font-size: 12px;
-          line-height: 1.6;
+          font-size: 14px;
+          line-height: 1.65;
         }
         .actions {
-          margin-top: 16px;
-          gap: 4px;
+          margin-top: var(--space-4);
+          gap: var(--space-1);
         }
         .btn-primary {
-          min-height: 43px;
+          min-height: var(--control-size);
           padding: 0 14px;
           font-size: 11px;
           gap: 12px;
@@ -1692,8 +1729,8 @@
         .studio-left h2,
         .project-copy h2,
         .contact-copy h2 {
-          font-size: clamp(35px, 9vw, 53px);
-          margin: 12px 0;
+          font-size: clamp(34px, 8.5vw, 52px);
+          margin: var(--space-3) 0;
         }
         .service-list {
           margin-top: 15px;
@@ -1822,7 +1859,11 @@
         .studio-center b {
           font-size: 16px;
         }
+        .studio-center {
+          max-width: 140px;
+        }
         .studio-center span {
+          display: block;
           font-size: 9px;
         }
         .contact-copy h2 {
@@ -1857,7 +1898,7 @@
         .form-option {
           padding: 10px;
           font-size: 10px;
-          min-height: 42px;
+          min-height: var(--control-size);
         }
         .form-step .field {
           margin-bottom: 8px;
@@ -1879,8 +1920,8 @@
           display: flex;
           position: absolute;
           bottom: calc(12px + env(safe-area-inset-bottom));
-          left: 12px;
-          right: 12px;
+          left: max(12px, env(safe-area-inset-left));
+          right: max(12px, env(safe-area-inset-right));
           z-index: 55;
           height: 61px;
           background: var(--surface);
@@ -1888,6 +1929,7 @@
           border-radius: 15px;
           box-shadow: 0 10px 45px rgba(34, 14, 45, 0.14);
           padding: 5px;
+          gap: 2px;
         }
         .mobile-nav button {
           flex: 1;
@@ -1900,9 +1942,14 @@
           justify-content: center;
           flex-direction: column;
           gap: 4px;
-          font-size: 9px;
+          font-size: 11px;
           font-weight: 700;
           min-width: 0;
+          min-height: 44px;
+          padding: 0 2px;
+        }
+        .mobile-nav button:focus-visible {
+          outline-offset: -2px;
         }
         .mobile-nav button.active {
           color: var(--accent);
@@ -1932,12 +1979,48 @@
         }
       }
       @media (max-height: 720px) and (min-width: 761px) {
+        .app {
+          min-height: 0;
+        }
         .topbar {
           top: 13px;
         }
         .scene {
           top: 66px;
           bottom: 50px;
+        }
+        .scene-body {
+          overflow-y: auto;
+          overflow-x: hidden;
+          scrollbar-gutter: stable;
+          padding: 8px 4px;
+        }
+        .split,
+        .service-split,
+        .project-scene .project-layout {
+          align-items: start;
+        }
+        .copy,
+        .service-left,
+        .project-copy {
+          align-self: start;
+        }
+        .hero-art {
+          min-height: 300px;
+        }
+        .studio-stage {
+          height: 380px;
+          min-height: 380px;
+        }
+        .studio-ring {
+          width: 300px;
+          height: 300px;
+        }
+        .studio-center {
+          max-width: 150px;
+        }
+        .studio-center b {
+          font-size: 18px;
         }
         .bottomline {
           bottom: 13px;
@@ -1946,7 +2029,9 @@
           font-size: clamp(45px, 5vw, 75px);
           margin: 12px 0;
         }
-        h2 {
+        h2,
+        .project-copy h2,
+        .contact-copy h2 {
           font-size: clamp(37px, 4vw, 65px);
           margin: 9px 0;
         }
@@ -1990,6 +2075,12 @@
         }
       }
       @media (max-height: 680px) and (max-width: 760px) {
+        .app[data-scene="0"] .persistent-mark {
+          left: 83%;
+          top: 70%;
+          width: 90px;
+          height: 90px;
+        }
         .scene {
           top: 68px;
           bottom: 76px;
@@ -1999,18 +2090,6 @@
         }
         .hero-art {
           min-height: 150px;
-        }
-        .studio-stage {
-          height: 180px;
-          min-height: 180px;
-        }
-        .studio-ring {
-          height: 160px;
-          width: 160px;
-        }
-        .studio-node {
-          width: 49px;
-          height: 49px;
         }
         .service-visual {
           height: 180px;
@@ -2050,13 +2129,42 @@
           background-color 0.35s ease,
           border-color 0.35s ease;
       }
-      .control:active,
-      .btn-quiet:active {
+      :is(
+        .control,
+        .project-tab,
+        .studio-tab,
+        .form-option,
+        .studio-node,
+        .detail-close
+      ):hover:not(:disabled) {
+        border-color: var(--purple);
+      }
+      :is(
+        .btn-primary,
+        .project-tab,
+        .studio-tab,
+        .form-option,
+        .detail-close
+      ):active:not(:disabled) {
+        box-shadow: inset 0 0 0 2px currentColor;
+      }
+      .studio-node:hover:not(.active),
+      .detail-close:hover,
+      .mobile-nav button:hover:not(.active) {
+        background: var(--soft);
+      }
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: var(--muted);
+        opacity: 1;
+      }
+      .control:active:not(:disabled),
+      .btn-quiet:active:not(:disabled) {
         opacity: 0.75;
       }
-      .form-option:hover:not(.active),
-      .project-tab:hover:not(.active),
-      .studio-tab:hover:not(.active) {
+      .form-option:hover:not(.active):not(:disabled),
+      .project-tab:hover:not(.active):not(:disabled),
+      .studio-tab:hover:not(.active):not(:disabled) {
         background: var(--soft);
       }
       .form-error {
@@ -2081,6 +2189,9 @@
       @media (forced-colors: active) {
         * {
           scrollbar-color: auto;
+        }
+        :focus-visible {
+          outline-color: Highlight;
         }
       }
 
@@ -2176,7 +2287,7 @@
       }
       @media (max-width: 760px) {
         .whatsapp-float {
-          right: 18px;
+          right: max(18px, env(safe-area-inset-right));
           bottom: calc(88px + env(safe-area-inset-bottom));
         }
         .toast {
@@ -2197,26 +2308,31 @@
           href="#inicio"
           class="wordbrand"
           id="homeBrand"
-          aria-label="dosvy, inicio"
+          aria-label="dos, inicio"
           ><span aria-hidden="true">dos</span
-          ><img
-            src="assets/logos/dosvy-vy.png"
-            width="795"
-            height="450"
-            alt=""
-            aria-hidden="true"
-        /></a>
+          ><picture
+            ><source
+              srcset="assets/logos/dosvy-vy.webp"
+              type="image/webp"
+            /><img
+              src="assets/logos/dosvy-vy.png"
+              width="795"
+              height="450"
+              alt=""
+              aria-hidden="true"
+          /></picture>
+        </a>
         <div class="topright">
           <span class="top-meta" data-t="topMeta">DISEÑO × INGENIERÍA</span
-          ><button class="control" id="langToggle" aria-label="Cambiar idioma">
+          ><button class="control" id="langToggle" aria-label="Cambiar idioma, ES / EN">
             ES / EN</button
           ><button
             class="control icononly"
             id="themeToggle"
-            aria-label="Cambiar tema"
+            aria-label="Activar modo oscuro"
             title="Cambiar tema"
           >
-            <svg viewBox="0 0 24 24" id="themeIcon">
+            <svg viewBox="0 0 24 24" id="themeIcon" aria-hidden="true" focusable="false">
               <circle cx="12" cy="12" r="4"></circle>
               <path
                 d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
@@ -2225,14 +2341,18 @@
           </button>
         </div>
       </header>
-      <div class="viewport" id="viewport">
+      <main class="viewport" id="viewport">
         <div class="persistent-mark" aria-hidden="true">
-          <img
-            src="assets/logos/dosvy-vy.png"
-            width="795"
-            height="450"
-            alt=""
-          />
+          <picture
+            ><source
+              srcset="assets/logos/dosvy-vy.webp"
+              type="image/webp"
+            /><img
+              src="assets/logos/dosvy-vy.png"
+              width="795"
+              height="450"
+              alt=""
+          /></picture>
         </div>
         <section
           class="scene active hero-scene"
@@ -2245,7 +2365,7 @@
               <div class="tagline" data-t="homePill">
                 DISEÑO Y DESARROLLO DIGITAL
               </div>
-              <h1 id="home-title">
+              <h1 id="home-title" tabindex="-1">
                 <span data-t="homeTitleA">Lo complejo.</span
                 ><span class="serif-accent" data-t="homeTitleB">Resuelto.</span>
               </h1>
@@ -2304,14 +2424,19 @@
               <div class="tagline" data-t="servicesPill">
                 CAPACIDADES EN MOVIMIENTO
               </div>
-              <h2 id="service-title">
+              <h2 id="service-title" tabindex="-1">
                 <span data-t="servicesTitleA">El software</span><br /><span
                   class="serif-accent"
                   data-t="servicesTitleB"
                   >toma forma.</span
                 >
               </h2>
-              <div class="service-list" id="serviceList"></div>
+              <div
+                class="service-list"
+                id="serviceList"
+                role="group"
+                aria-label="Servicios"
+              ></div>
               <button class="btn-quiet service-explore" id="serviceDetails">
                 <span data-t="discoverService">Descubrir esta capacidad</span
                 ><span aria-hidden="true">↗</span>
@@ -2356,7 +2481,7 @@
               <div class="tagline" data-t="workPill">
                 UNA VENTANA A LO QUE CREAMOS
               </div>
-              <h2 id="project-title">
+              <h2 id="project-title" tabindex="-1">
                 <span data-t="workTitleA">El trabajo</span><br /><span
                   class="serif-accent"
                   data-t="workTitleB"
@@ -2367,23 +2492,27 @@
                 Explora vistas conceptuales de productos. Los casos reales se
                 integrarán cuando estén disponibles.
               </p>
-              <div class="project-tabs">
+              <div
+                class="project-tabs"
+                role="group"
+                aria-label="Conceptos de proyecto"
+              >
                 <button
                   class="project-tab active"
                   data-project="0"
-                  aria-label="Proyecto 1"
+                  aria-label="01, Proyecto 1"
                 >
                   01</button
                 ><button
                   class="project-tab"
                   data-project="1"
-                  aria-label="Proyecto 2"
+                  aria-label="02, Proyecto 2"
                 >
                   02</button
                 ><button
                   class="project-tab"
                   data-project="2"
-                  aria-label="Proyecto 3"
+                  aria-label="03, Proyecto 3"
                 >
                   03
                 </button>
@@ -2450,7 +2579,7 @@
           <div class="scene-body split">
             <div class="copy studio-left">
               <div class="tagline" data-t="studioPill">NUESTRO ADN</div>
-              <h2 id="studio-title">
+              <h2 id="studio-title" tabindex="-1">
                 <span data-t="studioTitleA">Tres disciplinas.</span><br /><span
                   class="serif-accent"
                   data-t="studioTitleB"
@@ -2461,11 +2590,17 @@
                 No diseñamos y programamos por separado. Pensamos el producto
                 como un sistema completo.
               </p>
-              <div class="studio-tabs" id="studioTabs"></div>
+              <div
+                class="studio-tabs"
+                id="studioTabs"
+                role="group"
+                aria-label="Disciplinas"
+              ></div>
               <div class="studio-explain" id="studioExplain"></div>
             </div>
             <div
               class="studio-stage"
+              role="group"
               aria-label="Diagrama interactivo de estrategia, diseño e ingeniería"
             >
               <div class="studio-ring">
@@ -2475,19 +2610,19 @@
                     data-studio="0"
                     data-index="0"
                   >
-                    <svg viewBox="0 0 24 24">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <circle cx="12" cy="12" r="9" />
                       <circle cx="12" cy="12" r="3" />
                       <path d="M12 3v5M12 16v5M3 12h5M16 12h5" /></svg
                     ><span data-t="strategy">Estrategia</span></button
                   ><button class="studio-node" data-studio="1" data-index="1">
-                    <svg viewBox="0 0 24 24">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path
                         d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"
                       /></svg
                     ><span data-t="design">Diseño</span></button
                   ><button class="studio-node" data-studio="2" data-index="2">
-                    <svg viewBox="0 0 24 24">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-13-3 18" /></svg
                     ><span data-t="engineering">Ingeniería</span>
                   </button>
@@ -2514,7 +2649,7 @@
           <div class="scene-body split">
             <div class="copy contact-copy">
               <div class="tagline" data-t="contactPill">EL SIGUIENTE PASO</div>
-              <h2 id="contact-title">
+              <h2 id="contact-title" tabindex="-1">
                 <span data-t="contactTitleA">Hagamos</span><br /><span
                   class="serif-accent"
                   data-t="contactTitleB"
@@ -2542,13 +2677,18 @@
                 <div class="step-track"><i class="done"></i><i></i><i></i></div>
                 <form id="briefForm" novalidate>
                   <div class="form-step active" data-step="0">
-                    <p class="form-question" data-t="step0Title">
+                    <p class="form-question" id="step0Title" data-t="step0Title">
                       ¿Qué te gustaría construir?
                     </p>
-                    <div class="form-options" id="formOptions"></div>
+                    <div
+                      class="form-options"
+                      id="formOptions"
+                      role="group"
+                      aria-labelledby="step0Title"
+                    ></div>
                   </div>
                   <div class="form-step" data-step="1">
-                    <p class="form-question" data-t="step1Title">
+                    <p class="form-question" id="step1Title" data-t="step1Title">
                       Háblanos de tu idea.
                     </p>
                     <div class="field">
@@ -2565,7 +2705,7 @@
                     </div>
                   </div>
                   <div class="form-step" data-step="2">
-                    <p class="form-question" data-t="step2Title">
+                    <p class="form-question" id="step2Title" data-t="step2Title">
                       ¿Dónde podemos contactarte?
                     </p>
                     <div class="field">
@@ -2620,11 +2760,23 @@
                   Prototipo interactivo. La solicitud no se envía a un servidor.
                 </p>
               </div>
-              <div class="form-success" id="formSuccess" hidden>
+              <div
+                class="form-success"
+                id="formSuccess"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                hidden
+              >
                 <div class="success-circle">✓</div>
-                <div class="success-title" data-t="successTitle">
+                <h3
+                  class="success-title"
+                  id="formSuccessTitle"
+                  tabindex="-1"
+                  data-t="successTitle"
+                >
                   Brief completado.
-                </div>
+                </h3>
                 <p class="lead" style="margin: auto" data-t="successDesc">
                   La demostración terminó correctamente. No se envió ninguna
                   solicitud real.
@@ -2640,7 +2792,7 @@
             </div>
           </div>
         </section>
-      </div>
+      </main>
       <footer class="bottomline">
         <span class="hint"
           ><span class="scroll-anim"></span
@@ -2653,28 +2805,28 @@
       </footer>
       <nav class="mobile-nav" aria-label="Navegación móvil">
         <button data-go="0" class="active">
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7" /></svg
           ><span data-t="navHome">Inicio</span></button
         ><button data-go="1">
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect x="3" y="3" width="7" height="7" rx="1" />
             <rect x="14" y="3" width="7" height="7" rx="1" />
             <rect x="3" y="14" width="7" height="7" rx="1" />
             <rect x="14" y="14" width="7" height="7" rx="1" /></svg
           ><span data-t="navServices">Servicios</span></button
         ><button data-go="2">
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect x="3" y="3" width="18" height="18" rx="2" />
             <path d="M3 9h18M9 9v12" /></svg
           ><span data-t="navProjects">Proyectos</span></button
         ><button data-go="3">
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="9" />
             <path d="M3 12h18M12 3c4 4 4 14 0 18M12 3c-4 4-4 14 0 18" /></svg
           ><span data-t="navStudio">Estudio</span></button
         ><button data-go="4">
-          <svg viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="m3 5 18 7-18 7 3-7-3-7Z M6 12h15" /></svg
           ><span data-t="navContact">Contacto</span>
         </button>
@@ -2693,7 +2845,7 @@
           ×
         </button>
         <div class="detail-overline" id="detailOverline">DOSVY / SERVICIO</div>
-        <div class="detail-heading" id="detailHeading"></div>
+        <div class="detail-heading" id="detailHeading" role="heading" aria-level="2"></div>
         <div class="detail-description" id="detailDescription"></div>
         <div class="detail-notes" id="detailNotes"></div>
         <button class="btn-primary detail-cta" id="detailCta">
@@ -3158,7 +3310,7 @@
           syncThemeLabel();
         }
         function syncThemeLabel() {
-          const label =
+          const actionLabel =
             lang === "es"
               ? theme === "light"
                 ? "Activar modo oscuro"
@@ -3166,12 +3318,15 @@
               : theme === "light"
                 ? "Switch to dark mode"
                 : "Switch to light mode";
-          $("#themeToggle").setAttribute("aria-label", label);
+          $("#themeToggle").setAttribute(
+            "aria-label",
+            lang === "es" ? "Tema oscuro" : "Dark theme",
+          );
           $("#themeToggle").setAttribute(
             "aria-pressed",
             String(theme === "dark"),
           );
-          $("#themeToggle").title = label;
+          $("#themeToggle").title = actionLabel;
         }
         function escapeHtml(s) {
           return String(s).replace(
@@ -3198,7 +3353,9 @@
           $("#langToggle").textContent = lang === "es" ? "ES / EN" : "EN / ES";
           $("#langToggle").setAttribute(
             "aria-label",
-            lang === "es" ? "Switch to English" : "Cambiar a español",
+            lang === "es"
+              ? "Cambiar idioma, ES / EN"
+              : "Change language, EN / ES",
           );
           renderServices();
           renderProjects();
@@ -3210,7 +3367,25 @@
           syncWhatsAppLabel();
           $("#homeBrand").setAttribute(
             "aria-label",
-            lang === "es" ? "dosvy, inicio" : "dosvy, home",
+            lang === "es" ? "dos, inicio" : "dos, home",
+          );
+          $(".studio-stage").setAttribute(
+            "aria-label",
+            lang === "es"
+              ? "Diagrama interactivo de estrategia, diseño e ingeniería"
+              : "Interactive strategy, design, and engineering diagram",
+          );
+          $("#serviceList").setAttribute(
+            "aria-label",
+            lang === "es" ? "Servicios" : "Services",
+          );
+          $(".project-tabs").setAttribute(
+            "aria-label",
+            lang === "es" ? "Conceptos de proyecto" : "Project concepts",
+          );
+          $("#studioTabs").setAttribute(
+            "aria-label",
+            lang === "es" ? "Disciplinas" : "Disciplines",
           );
           $("#detailClose").setAttribute(
             "aria-label",
@@ -3237,12 +3412,13 @@
           $("#sceneIndicator").textContent =
             `0${activeScene + 1} / 05 — ${tr("names")[activeScene]}`;
         }
-        function gotoScene(index) {
+        function gotoScene(index, focusScene = false) {
           index = Math.max(0, Math.min(4, Number(index)));
           if (index === activeScene || busy) return;
           closeDetails();
           busy = true;
           wheelSum = 0;
+          clearTimeout(wheelReset);
           const from = $(`.scene[data-scene-index="${activeScene}"]`),
             to = $(`.scene[data-scene-index="${index}"]`);
           from.classList.remove("active");
@@ -3251,6 +3427,8 @@
           to.classList.add("active");
           to.classList.remove("leaving");
           to.inert = false;
+          if (focusScene)
+            to.querySelector("h1, h2")?.focus({ preventScroll: true });
           activeScene = index;
           app.dataset.scene = String(index);
           updateNav();
@@ -3263,10 +3441,15 @@
                   index
                 ],
             );
+          const transitionDelay = matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches
+            ? 0
+            : 850;
           setTimeout(() => {
             from.classList.remove("leaving");
             busy = false;
-          }, 850);
+          }, transitionDelay);
         }
         function renderServices() {
           const names = tr("serviceNames");
@@ -3301,7 +3484,7 @@
             b.setAttribute("aria-pressed", String(current));
             b.setAttribute(
               "aria-label",
-              (lang === "es" ? "Proyecto " : "Project ") +
+              `${String(Number(b.dataset.project) + 1).padStart(2, "0")}, ${lang === "es" ? "Proyecto " : "Project "}` +
                 (Number(b.dataset.project) + 1),
             );
           });
@@ -3350,37 +3533,62 @@
           $("#nextLabel").textContent =
             step === 2 ? tr("finish") : tr("continue");
           $("#formError").textContent = "";
+          $("#formOptions").removeAttribute("aria-describedby");
+          $("#formOptions").removeAttribute("aria-invalid");
+          ["#projectText", "#fullName", "#emailAddress"].forEach((selector) => {
+            const field = $(selector);
+            field.removeAttribute("aria-invalid");
+            field.removeAttribute("aria-describedby");
+          });
+        }
+        function focusFormStep() {
+          const target =
+            step === 0
+              ? $(`#formOptions [data-type="${Math.max(0, selectedType)}"]`)
+              : step === 1
+                ? $("#projectText")
+                : $("#fullName");
+          target?.focus({ preventScroll: true });
+        }
+        function setFormError(message, control) {
+          $("#formError").textContent = message;
+          if (!control) return;
+          control.setAttribute("aria-invalid", "true");
+          control.setAttribute("aria-describedby", "formError");
+          control.focus({ preventScroll: true });
         }
         function formNext() {
           if (step === 0 && selectedType < 0) {
-            $("#formError").textContent = tr("errorType");
+            const options = $("#formOptions");
+            options.setAttribute("aria-describedby", "formError");
+            options.setAttribute("aria-invalid", "true");
+            setFormError(tr("errorType"), options.querySelector("button"));
             return;
           }
           if (step === 1 && $("#projectText").value.trim().length < 12) {
-            $("#formError").textContent = tr("errorDescription");
-            $("#projectText").focus();
+            setFormError(tr("errorDescription"), $("#projectText"));
             return;
           }
           if (step === 2) {
             if (!$("#fullName").value.trim()) {
-              $("#formError").textContent = tr("errorName");
-              $("#fullName").focus();
+              setFormError(tr("errorName"), $("#fullName"));
               return;
             }
             if (
               !$("#emailAddress").validity.valid ||
               !$("#emailAddress").value.trim()
             ) {
-              $("#formError").textContent = tr("errorEmail");
-              $("#emailAddress").focus();
+              setFormError(tr("errorEmail"), $("#emailAddress"));
               return;
             }
             $("#formMain").hidden = true;
             $("#formSuccess").hidden = false;
+            $("#formSuccessTitle").focus({ preventScroll: true });
             return;
           }
           step++;
           renderForm();
+          focusFormStep();
         }
 
         function buildWhatsAppUrl(
@@ -3486,12 +3694,12 @@
         $$("[data-go]").forEach((b) =>
           b.addEventListener("click", (e) => {
             e.preventDefault();
-            gotoScene(b.dataset.go);
+            gotoScene(b.dataset.go, !b.closest(".mobile-nav"));
           }),
         );
         $("#homeBrand").addEventListener("click", (e) => {
           e.preventDefault();
-          gotoScene(0);
+          gotoScene(0, true);
         });
         $("#themeToggle").addEventListener("click", () => {
           theme = theme === "light" ? "dark" : "light";
@@ -3506,6 +3714,9 @@
           if (!button) return;
           service = Number(button.dataset.service);
           renderServices();
+          $(`#serviceList [data-service="${service}"]`)?.focus({
+            preventScroll: true,
+          });
         });
         $("#serviceDetails").addEventListener("click", () =>
           openDetails("service"),
@@ -3524,6 +3735,9 @@
           if (!b) return;
           studio = Number(b.dataset.studio);
           renderStudio();
+          $(`#studioTabs [data-studio="${studio}"]`)?.focus({
+            preventScroll: true,
+          });
         });
         $$(".studio-node").forEach((b) =>
           b.addEventListener("click", () => {
@@ -3536,6 +3750,24 @@
           if (!b) return;
           selectedType = Number(b.dataset.type);
           renderForm();
+          $(`#formOptions [data-type="${selectedType}"]`)?.focus({
+            preventScroll: true,
+          });
+        });
+        ["#projectText", "#fullName", "#emailAddress"].forEach((selector) => {
+          const field = $(selector);
+          field.addEventListener("input", () => {
+            const valid =
+              field.id === "projectText"
+                ? field.value.trim().length >= 12
+                : field.id === "fullName"
+                  ? Boolean(field.value.trim())
+                  : Boolean(field.value.trim()) && field.validity.valid;
+            if (!valid || field.getAttribute("aria-invalid") !== "true") return;
+            field.removeAttribute("aria-invalid");
+            field.removeAttribute("aria-describedby");
+            $("#formError").textContent = "";
+          });
         });
         $("#briefForm").addEventListener("submit", (e) => {
           e.preventDefault();
@@ -3545,6 +3777,7 @@
           if (step > 0) {
             step--;
             renderForm();
+            focusFormStep();
           }
         });
         $("#restartForm").addEventListener("click", () => {
@@ -3554,51 +3787,39 @@
           $("#formMain").hidden = false;
           $("#formSuccess").hidden = true;
           renderForm();
+          focusFormStep();
         });
         $("#whatsApp").addEventListener("click", openWhatsApp);
         $("#scrim").addEventListener("click", closeDetails);
         $("#detailClose").addEventListener("click", closeDetails);
         $("#detailCta").addEventListener("click", () => {
           closeDetails();
-          gotoScene(4);
+          gotoScene(4, true);
         });
-        function canNavigateWheel(e) {
-          if (opened || busy) return false;
-          if (e.target.closest(".contact-pane")) return false;
-          if (
-            e.target.closest(".scene-body")?.scrollHeight >
-            e.target.closest(".scene-body")?.clientHeight + 8
-          ) {
-            const area = e.target.closest(".scene-body");
-            if (
-              (e.deltaY > 0 &&
-                area.scrollTop < area.scrollHeight - area.clientHeight - 3) ||
-              (e.deltaY < 0 && area.scrollTop > 3)
-            )
-              return false;
-          }
-          return true;
+        function canScrollInDirection(
+          area,
+          direction,
+          scrollTop = area?.scrollTop,
+          maxScroll = area
+            ? area.scrollHeight - area.clientHeight
+            : 0,
+        ) {
+          if (!area || maxScroll < 8) return false;
+          return direction > 0 ? scrollTop < maxScroll - 2 : scrollTop > 2;
         }
         window.addEventListener(
           "wheel",
           (e) => {
             if (e.ctrlKey) return;
-            if (opened) {
-              return;
-            }
+            if (opened || busy) return;
             const inside = e.target.closest(".scene-body");
-            if (inside && inside.scrollHeight > inside.clientHeight + 8) {
-              if (
-                (e.deltaY > 0 &&
-                  inside.scrollTop <
-                    inside.scrollHeight - inside.clientHeight - 3) ||
-                (e.deltaY < 0 && inside.scrollTop > 3)
-              )
-                return;
+            if (canScrollInDirection(inside, e.deltaY)) {
+              wheelSum = 0;
+              clearTimeout(wheelReset);
+              return;
             }
             if (e.target.closest(".contact-pane")) return;
             e.preventDefault();
-            if (!canNavigateWheel(e)) return;
             wheelSum += e.deltaY;
             clearTimeout(wheelReset);
             wheelReset = setTimeout(() => (wheelSum = 0), 180);
@@ -3641,21 +3862,59 @@
           )
             return;
           if (e.key === "ArrowDown" || e.key === "PageDown") {
+            const contactPane = e.target.closest(".contact-pane");
+            const scroller =
+              contactPane ||
+              e.target.closest(".scene-body") ||
+              $(`.scene[data-scene-index="${activeScene}"] .scene-body`);
+            if (canScrollInDirection(scroller, 1)) {
+              e.preventDefault();
+              scroller.scrollBy({
+                top: e.key === "PageDown" ? scroller.clientHeight * 0.8 : 40,
+                behavior: "auto",
+              });
+              return;
+            }
+            if (contactPane) return;
             e.preventDefault();
-            gotoScene(activeScene + 1);
+            gotoScene(activeScene + 1, true);
           } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+            const contactPane = e.target.closest(".contact-pane");
+            const scroller =
+              contactPane ||
+              e.target.closest(".scene-body") ||
+              $(`.scene[data-scene-index="${activeScene}"] .scene-body`);
+            if (canScrollInDirection(scroller, -1)) {
+              e.preventDefault();
+              scroller.scrollBy({
+                top: e.key === "PageUp" ? -scroller.clientHeight * 0.8 : -40,
+                behavior: "auto",
+              });
+              return;
+            }
+            if (contactPane) return;
             e.preventDefault();
-            gotoScene(activeScene - 1);
+            gotoScene(activeScene - 1, true);
           }
         });
         window.addEventListener(
           "touchstart",
           (e) => {
-            if (e.touches.length !== 1) return;
+            if (e.touches.length !== 1) {
+              touchStart = null;
+              return;
+            }
+            const target = e.target;
+            const scroller = target.closest?.(".scene-body");
             touchStart = {
               y: e.touches[0].clientY,
               x: e.touches[0].clientX,
-              target: e.target,
+              target,
+              scroller,
+              scrollTop: scroller?.scrollTop ?? 0,
+              maxScroll: scroller
+                ? scroller.scrollHeight - scroller.clientHeight
+                : 0,
             };
           },
           { passive: true },
@@ -3663,11 +3922,13 @@
         window.addEventListener(
           "touchend",
           (e) => {
-            if (!touchStart || opened || busy) return;
-            let dy = e.changedTouches[0].clientY - touchStart.y,
-              dx = e.changedTouches[0].clientX - touchStart.x;
-            const target = touchStart.target;
+            if (!touchStart) return;
+            const gesture = touchStart;
             touchStart = null;
+            if (opened || busy || !e.changedTouches.length) return;
+            const dy = e.changedTouches[0].clientY - gesture.y,
+              dx = e.changedTouches[0].clientX - gesture.x;
+            const target = gesture.target;
             if (Math.abs(dy) < 65 || Math.abs(dy) < Math.abs(dx) * 1.25) return;
             if (
               target.closest(
@@ -3675,16 +3936,15 @@
               )
             )
               return;
-            const scroller = target.closest(".scene-body");
-            if (scroller && scroller.scrollHeight > scroller.clientHeight + 8) {
-              if (
-                (dy < 0 &&
-                  scroller.scrollTop <
-                    scroller.scrollHeight - scroller.clientHeight - 2) ||
-                (dy > 0 && scroller.scrollTop > 2)
+            if (
+              canScrollInDirection(
+                gesture.scroller,
+                dy < 0 ? 1 : -1,
+                gesture.scrollTop,
+                gesture.maxScroll,
               )
-                return;
-            }
+            )
+              return;
             gotoScene(activeScene + (dy < 0 ? 1 : -1));
           },
           { passive: true },
